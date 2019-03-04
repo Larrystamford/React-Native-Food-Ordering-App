@@ -45,22 +45,7 @@ export default class OrderingScreen extends React.Component {
     </View>
   ))
 
-  renderItem = ({ item, index }) => (
-    <View style={styles.card}>
-      <View style={styles.divider}>
-        <Text style={styles.heading}>Order Id</Text>
-        <Text>{item._id}</Text>
-      </View>
-      <View style={styles.divider}>
-        <Text style={styles.heading}>Total Price:</Text>
-        <Text>{`Rs. ${item.totalCost}`}</Text>
-      </View>
-      <View style={styles.divider}>
-        <Text style={styles.item}>Items ordered</Text>
-        {item.items.map(this.mapItems)}
-      </View>
-    </View>
-  )
+  
   render() {
 
     return (
