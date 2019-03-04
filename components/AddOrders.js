@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-native-elements';
-import { View, Text } from 'react-native';
+import { ScrollView, Text, Image } from 'react-native';
 
 import {db} from '../database/config';
 import {styles} from './EntryFormStyles';
@@ -8,6 +8,7 @@ import {styles} from './EntryFormStyles';
 export default class AddEntry extends Component {
   constructor(props) {
     super(props);
+    // this.state = {[{}, {}, {}]}
     this.state = {ChickenSlices: '', AustralianBeef: '', CheesyBalls: '', submitMessage: ''};
     this.handleChickenChange = this.handleChickenChange.bind(this);
     this.handleBeefChange = this.handleBeefChange.bind(this);
@@ -42,7 +43,10 @@ export default class AddEntry extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
+        <Image
+          source={require('./beef.jpg')}
+        />
         <Input
           placeholder='Quantity (Each serving is 100g)'
           containerStyle={styles.entry}
@@ -50,11 +54,17 @@ export default class AddEntry extends Component {
           // errorMessage='Name is required'
           onChangeText={this.handleChickenChange}
           />
+        <Image
+          source={require('./chicken.jpg')}
+        />
           <Input
             placeholder='Quantity (Each serving is 100g)'
             containerStyle={styles.entry}
             onChangeText={this.handleBeefChange}
             />
+        <Image
+          source={require('./ball.jpg')}
+        />
           <Input
             placeholder='Quantity (Per Pc)'
             containerStyle={styles.entry}
@@ -68,7 +78,7 @@ export default class AddEntry extends Component {
           title='Back'
           onPress={() => this.props.navigation.navigate('Home')}
         />
-      </View>
+      </ScrollView>
     )
   }
 }
