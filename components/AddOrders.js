@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-native-elements';
 import { View, ScrollView, Text, Image } from 'react-native';
-
+import { CompleteComponent } from '../components/';
 import {db} from '../database/config';
 import {styles} from './EntryFormStyles';
 
@@ -49,24 +49,18 @@ export default class AddEntry extends Component {
           style={styles.item_style}
           source={require('./beef.jpg')}
         />
-        <Input
-          placeholder='Quantity (Each serving is 100g)'
-          containerStyle={styles.entry}
-          // errorStyle={{ color: 'red' }}
-          // errorMessage='Name is required'
-          onChangeText={this.handleChickenChange}
-          />
+        <View style={styles.counter_button}>
+          <CompleteComponent />
+        </View>
       </View>
       <View style={styles.container}>
         <Image
           style={styles.item_style}
           source={require('./chicken.jpg')}
         />
-          <Input
-            placeholder='Quantity (Each serving is 100g)'
-            containerStyle={styles.entry}
-            onChangeText={this.handleBeefChange}
-            />
+        <View style={styles.counter_button}>
+          <CompleteComponent />
+        </View>
       </View>
       <View style={styles.container}>
         <Image
@@ -82,10 +76,7 @@ export default class AddEntry extends Component {
         <Button raised rightIcon={{name: 'check'}} title='Submit Your Order' onPress={this.submitForm}/>
         <Text>{this.state.submitMessage}</Text>
         <Button
-          raised
-          large
-          title='Back'
-          onPress={() => this.props.navigation.navigate('Home')}
+          raised large title='Back' onPress={() => this.props.navigation.navigate('Home')}
         />
       </ScrollView>
     )

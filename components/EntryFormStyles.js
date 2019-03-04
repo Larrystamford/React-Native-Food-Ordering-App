@@ -23,5 +23,11 @@ export const styles = StyleSheet.create({
     backgroundColor: 'green',
     width: '40%',
     height: 40
+  },
+  counter_button: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: 50,
+    flex: 0
   }
 })
