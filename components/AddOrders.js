@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-native-elements';
-import { ScrollView, Text, Image } from 'react-native';
+import { View, ScrollView, Text, Image } from 'react-native';
 
 import {db} from '../database/config';
 import {styles} from './EntryFormStyles';
@@ -44,7 +44,9 @@ export default class AddEntry extends Component {
   render() {
     return (
       <ScrollView>
+      <View style={styles.container}>
         <Image
+          style={styles.item_style}
           source={require('./beef.jpg')}
         />
         <Input
@@ -54,7 +56,10 @@ export default class AddEntry extends Component {
           // errorMessage='Name is required'
           onChangeText={this.handleChickenChange}
           />
+      </View>
+      <View style={styles.container}>
         <Image
+          style={styles.item_style}
           source={require('./chicken.jpg')}
         />
           <Input
@@ -62,7 +67,10 @@ export default class AddEntry extends Component {
             containerStyle={styles.entry}
             onChangeText={this.handleBeefChange}
             />
+      </View>
+      <View style={styles.container}>
         <Image
+          style={styles.item_style}
           source={require('./ball.jpg')}
         />
           <Input
@@ -70,6 +78,7 @@ export default class AddEntry extends Component {
             containerStyle={styles.entry}
             onChangeText={this.handleBallsChange}
             />
+      </View>
         <Button raised rightIcon={{name: 'check'}} title='Submit Your Order' onPress={this.submitForm}/>
         <Text>{this.state.submitMessage}</Text>
         <Button
