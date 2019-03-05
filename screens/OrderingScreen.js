@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { ImageBackground, Image, View, StyleSheet, FlatList, Text } from 'react-native';
 // import { fetchOrders } from '../../src/actions';
 import colors from '../src/constants/colors';
 import AddOrders from '../components/AddOrders';
@@ -49,10 +49,12 @@ export default class OrderingScreen extends React.Component {
   render() {
 
     return (
+      // without resizeMode it was white
+      
       <View style={styles.container}>
-        
         <AddOrders navigation={this.props.navigation} />
       </View>
+      
     );
   }
 }

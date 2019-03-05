@@ -5,52 +5,68 @@ import { CompleteComponent } from '../components/';
 import {db} from '../database/config';
 import {styles} from './EntryFormStyles';
 
+
 export default class AddEntry extends Component {
   constructor(props) {
     super(props);
     // this.state = {[{}, {}, {}]}
-    this.state = {ChickenSlices: '', AustralianBeef: '', CheesyBalls: '', submitMessage: ''};
-    this.handleChickenChange = this.handleChickenChange.bind(this);
-    this.handleBeefChange = this.handleBeefChange.bind(this);
-    this.handleBallsChange = this.handleBallsChange.bind(this);
+    this.state = {ChickenSlices: 0, AustralianBeef: 0, CheesyBalls: 0, submitMessage: ''};
+   
+
+    this.changeChickenCounter = this.changeChickenCounter.bind(this);
+    this.changeBeefCounter = this.changeBeefCounter.bind(this);
+    this.changeBallCounter = this.changeBallCounter.bind(this);
+
     this.submitForm = this.submitForm.bind(this);
 
   }
-  handleChickenChange(ChickenSlices) {
-    this.setState({ChickenSlices: ChickenSlices});
+
+  changeChickenCounter(num) {
+    this.setState({ChickenSlices: this.state.ChickenSlices + num})
   }
-  handleBeefChange(AustralianBeef) {
-    this.setState({AustralianBeef: AustralianBeef});
+
+  changeBeefCounter(num) {
+    this.setState({AustralianBeef: this.state.AustralianBeef + num})
+
   }
-  handleBallsChange(CheesyBalls) {
-    this.setState({CheesyBalls: CheesyBalls});
+
+  changeBallCounter(num) {
+    this.setState({CheesyBalls: this.state.CheesyBalls + num})
   }
 
   submitForm() {
     this.setState({submitMessage: 'Loading'});
     // object destructuring
-    const {ChickenSlices, AustralianBeef, CheesyBalls} = this.state;
-    console.log(ChickenSlices)
-    
+    // let so that it can be changed
+    let {ChickenSlices, AustralianBeef, CheesyBalls} = this.state;
+    ChickenSlices = ChickenSlices*2;
+    AustralianBeef = AustralianBeef*3;
+    CheesyBalls = CheesyBalls*0.5;
+    const total_cost = CheesyBalls + AustralianBeef +ChickenSlices
 
     // pushing the data under the Employees category.
     // Then and Catch is to return results and catch errors
-    db.ref('Orders/').push({ChickenSlices, AustralianBeef, CheesyBalls}).then((data) => {
+    db.ref('cost/').push({ChickenSlices, AustralianBeef, CheesyBalls, total_cost}).then((data) => {
       this.setState({submitMessage: 'Order Recorded!'})
+      this.props.navigation.navigate('Payment')
+
     }).catch((error) => {
       this.setState({submitMessage: 'Error, try again.'})
+      console.log(error)
     })
   }
+  
   render() {
     return (
       <ScrollView>
+        
       <View style={styles.container}>
         <Image
           style={styles.item_style}
           source={require('./beef.jpg')}
         />
         <View style={styles.counter_button}>
-          <CompleteComponent />
+          <CompleteComponent counterfunc={this.changeBeefCounter}/>
         </View>
       </View>
       <View style={styles.container}>
@@ -59,7 +75,7 @@ export default class AddEntry extends Component {
           source={require('./chicken.jpg')}
         />
         <View style={styles.counter_button}>
-          <CompleteComponent />
+          <CompleteComponent counterfunc={this.changeChickenCounter}/>
         </View>
       </View>
       <View style={styles.container}>
@@ -67,16 +83,12 @@ export default class AddEntry extends Component {
           style={styles.item_style}
           source={require('./ball.jpg')}
         />
-          <Input
-            placeholder='Quantity (Per Pc)'
-            containerStyle={styles.entry}
-            onChangeText={this.handleBallsChange}
-            />
+        <View style={styles.counter_button}>
+          <CompleteComponent counterfunc={this.changeBallCounter} />
+        </View>
       </View>
-        <Button raised rightIcon={{name: 'check'}} title='Submit Your Order' onPress={this.submitForm}/>
-        <Text>{this.state.submitMessage}</Text>
         <Button
-          raised large title='Back' onPress={() => this.props.navigation.navigate('Home')}
+          raised large title='Submit Your Order' onPress={this.submitForm}
         />
       </ScrollView>
     )

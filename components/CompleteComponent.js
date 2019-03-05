@@ -41,6 +41,8 @@ export default class CompleteComponent extends PureComponent {
   decreaseNumber = () => {
     if (this.state.counter > 0) {
       this.setState({ counter: this.state.counter - 1 });
+      // children get props to link to parent function
+      this.props.counterfunc(-1)
       this.animateCounterAnimation();
     } else {
       this.shakeMotionAnimation();
@@ -49,6 +51,8 @@ export default class CompleteComponent extends PureComponent {
 
   incrementNumber = () => {
     this.setState({ counter: this.state.counter + 1 });
+     // children get props to link to parent function
+    this.props.counterfunc(1)
     this.animateCounterAnimation();
   };
 

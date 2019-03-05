@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import AddEntryScreen from './screens/AddEntryScreen';
 import ListScreen from './screens/ListScreen';
 import OrderingScreen from './screens/OrderingScreen';
+import PaymentScreen from './screens/PaymentScreen';
 
 
 
@@ -21,7 +22,10 @@ const AppNavigator = createStackNavigator({
   },
   Ordering: {
     screen: OrderingScreen
-  }
+  },
+  Payment: {
+    screen: PaymentScreen
+  },
 });
 
 const AppContainer = createAppContainer(AppNavigator);

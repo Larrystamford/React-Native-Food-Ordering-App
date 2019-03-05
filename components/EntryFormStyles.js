@@ -13,11 +13,17 @@ export const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: '#ff00ff'
   },
+  divider: {
+    color:'#000000',
+    height: '10%',
+  },
   container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10
+    marginTop: 30,
+    opacity: 0.9,
+    color: '#000000'
   },
   button: {
     backgroundColor: 'green',
@@ -29,5 +35,24 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     width: 50,
     flex: 0
+  },
+  payment_button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 475,
+    flex: 0,
+  },
+  cost_display: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 200,
+    flex: 1,
+  },
+  text_style: {
+    fontSize: 50,
+    fontWeight: '500',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#0000ff'
   }
 })
